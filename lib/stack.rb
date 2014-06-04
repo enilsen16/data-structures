@@ -17,7 +17,7 @@ class List
 
   def pop
     if @count == 0
-      raise
+      raise "stack is empty"
     else
       current_node = @top
       new_top = current_node.below
