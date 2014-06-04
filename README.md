@@ -10,5 +10,9 @@ You can currently add, search, remove a single node. As well as print out all of
 
 A stack is a abstract data structure. Following the FILO(first in, last out) idea.
 
+##queue models a queue data structure. It uses a Queue and a Item as objects.
 
+A queue is a First-In-First-Out (FIFO) data structure.
+
+  
 A Rakefile is included so just run "rake" to see the tests pass.
