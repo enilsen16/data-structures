@@ -16,4 +16,27 @@ class Array
     end
     return_array + right_array + left_array
   end
+
+    def merge_sort
+    return self if self.size < 2
+    arr = self.combination(1).to_a
+    merge = []
+    until arr.size == 1
+      left, right = arr.shift, arr.shift
+      until left.size.zero? || right.size.zero?
+        if left.first < right.first
+          merge << left.shift
+        else
+          merge << right.shift
+        end
+      end
+      if left.size > 0
+        merge += left.slice!(0..left.size)
+      else
+        merge += right.slice!(0..right.size)
+      end
+      arr << merge.slice!(0..merge.size)
+    end
+    arr.flatten
+  end
 end
