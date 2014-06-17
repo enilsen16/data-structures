@@ -1,6 +1,3 @@
-require 'pry'
-require 'pry-nav'
-
 class Lisst
   attr_accessor :head, :tail, :count
 
@@ -24,9 +21,9 @@ class Lisst
 
   def search(value)
     return nil if @head == nil
-      nodde = @head
+    nodde = @head
     begin
-      return value if nodde.value == value
+      return nodde if nodde.value == value
       nodde = nodde.prev
     end while nodde != nil
   end
@@ -34,41 +31,36 @@ class Lisst
   def remove(node_to_delete)
     if @head == node_to_delete
       @head = @head.prev
+      @count -= 1
     else
       current_nodde = @head.prev
-      prev_nodde = @head
       while current_nodde
         if current_nodde == node_to_delete
-          prev_nodde.nexxt = current_nodde.prev
-          
-          return nil
+          current_nodde.nexxt.prev = current_nodde.prev unless current_nodde.nexxt.nil?
+          current_nodde.prev.nexxt = current_nodde.nexxt unless current_nodde.prev.nil?
+          @count -= 1
         end
-        prev_nodde = current_nodde
-        current_nodde = current_nodde.nexxt
+        current_nodde = current_nodde.prev
       end
     end
-    @count -= 1
-    return nil
   end
 
   def dedupe
     pointer = @head
     current_check = @head.prev
-    while pointer != @tail
-      searched = search(current_check)
-      if pointer == searched
-        remove(searched)
-        @count -= 1
-      else
-        if searched == @tail
-          new_pointer = pointer.prev
-          pointer = new_pointer
-        else
+    while pointer != nil
+      current_check = pointer.prev
+      while current_check !=nil
+        # puts "Pointer @ #{pointer.value}, checking #{current_check.value}"
+        if pointer.value == current_check.value
+          # puts "removing #{current_check.value}"
+          remove(current_check)
         end
-        new_check = searched.prev
-        searched = new_check
+        current_check = current_check.prev
       end
+      pointer = pointer.prev
     end
+    return self
   end
 end
 
