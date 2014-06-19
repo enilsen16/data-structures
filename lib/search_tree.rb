@@ -16,24 +16,38 @@ class Search_tree
 
   def size
     if @count == 0
-      return nil
+      return 0
     else
       return @count
     end
   end
 
-  def depth
+  def depth(node = @root)
+    return 1 if node.children.empty?
+    node.children.map { |x| 1 + depth(x) }.max
   end
 
-  def balance
+  def balance(node = @root)
+    return 0 if node.children.empty?
+    if @root.left.nil?
+      depth_left = 0
+      depth_right = depth(node.right)
+    elsif @root.right.nil?
+      depth_right = 0
+      depth_left = depth(node.left)
+    else
+      depth_left = depth(node.left)
+      depth_right = depth(node.right)
+    end
+    depth_left - depth_right
   end
 
 private
 
   def to_insert(top_node,value_to_insert)
     if top_node.nil?
-      Node_tree.new(value_to_insert)
       @count += 1
+      return Node_tree.new(value_to_insert)
     elsif top_node == value_to_insert
       top_node.value = value_to_insert
     elsif value_to_insert < top_node.value
@@ -57,7 +71,6 @@ private
       top_node = search_for(top_node.right, new_node)
     end
       return top_node
-      binding.pry
   end
 end
 
@@ -68,5 +81,9 @@ class Node_tree
     @value = value
     @left = left
     @right = right
+  end
+
+  def children
+    [@left, @right].compact
   end
 end
