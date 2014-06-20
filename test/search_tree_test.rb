@@ -45,3 +45,32 @@ describe "A Binary Search Tree" do
     search_tree.balance.must_equal 1
   end
 end
+
+describe "binary search tree" do
+  before do
+    @search_tree = Search_tree.new
+    @search_tree.insert(25)
+    @search_tree.insert(24)
+    @search_tree.insert(23)
+    @search_tree.insert(22)
+    @search_tree.insert(21)
+    @search_tree.insert(20)
+    @search_tree.insert(30)
+  end
+
+  it "must print in preorder" do
+    @search_tree.preorder.must_equal [25, 24, 23, 22, 21, 20, 30]
+  end
+
+  it "must print in in_order" do
+    @search_tree.in_order.must_equal [20, 21, 22, 23, 24, 25, 30]
+  end
+
+  it "must print in postorder" do
+    @search_tree.postorder.must_equal [20, 21, 22, 23, 24, 30, 25]
+  end
+
+  it "must print in breadth_first" do
+  @search_tree.breadth_first.must_equal [25, 24, 30, 23, 22, 21, 20]
+  end
+end

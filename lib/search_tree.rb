@@ -1,9 +1,12 @@
+require 'queue'
+
 class Search_tree
   attr_reader :root,:count
 
   def initialize(root=nil, count=0)
     @root = root
     @count = count
+    @@response = []
   end
 
   def insert(value)
@@ -40,6 +43,42 @@ class Search_tree
       depth_right = depth(node.right)
     end
     depth_left - depth_right
+  end
+
+  def preorder(node = @root)
+    @@response << node.value
+    preorder(node.left) if node.left
+    preorder(node.right) if node.right
+    @@response
+  end
+
+  def in_order(node = @root)
+    in_order(node.left) if node.left
+    @@response << node.value
+    in_order(node.right) if node.right
+    @@response
+  end
+
+  def postorder(node = @root)
+    postorder(node.left) if node.left
+    postorder(node.right) if node.right
+    @@response << node.value
+    @@response
+  end
+
+  def breadth_first(node = @root)
+    queue = []
+    queue << node
+    result = []
+    until queue.empty?
+      current = queue.shift
+      unless current.nil?
+        result << current.value
+        queue << current.left
+        queue << current.right
+      end
+    end
+    return result
   end
 
 private
