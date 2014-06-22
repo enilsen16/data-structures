@@ -20,7 +20,6 @@ class Queue
       raise "stack is empty"
     else
       current_item = @head
-      binding.pry
       new_head = current_item.behind
       @head = new_head
       @size -= 1

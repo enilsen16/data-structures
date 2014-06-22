@@ -3,7 +3,7 @@ require "merge_sort"
 require "benchmark"
 
 describe "Merge sort" do
-it "will sort in given array" do
+  it "will sort in given array" do
     a = [5,8,4,3,1]
     a.mergesort.must_equal [1,3,4,5,8]
   end
