@@ -1,4 +1,4 @@
-#Implementation practice of Data Structures in Ruby
+#Implementation practice of Data Structures and Sorts in Ruby
 
 ##link_list is modeled using a Racetrack and Car example rather than list or node.
 
@@ -17,6 +17,8 @@ A queue is a First-In-First-Out (FIFO) data structure.
 ##A Binary tree is a data structure where each node has at most two children.
 This implementation models the data and then sorts them accordingly.
 
-##Insertion Sort is a type of sort that builds the final sorted array one at a time. This type of algorithm is prefer for arrays that are equal to or less than 7.
+##Insertion Sort is a type of sort that builds the final sorted array one at a time. This type of algorithm is prefered for arrays that are equal to or less than 7.
+
+##Quick Sort is a comparison sort but is not a stable sort.
 
 ###A Rakefile is included so just run "rake" to see the tests pass.
