@@ -1,4 +1,3 @@
-#def quicksort(array, left=0, right=(array.size - 1))
 class Array
 
   def quicksort(left=0, right=(self.size-1))
